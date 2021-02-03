@@ -6,18 +6,22 @@ import {Component, HostListener, ViewChild} from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'nav-example';
-
   isLogged = true;
   @ViewChild('sidenav') sidenav: any;
+  isExpanded = true;
+  showSubmenu: boolean = false;
+  isShowing = false;
+  showSubSubMenu: boolean = false;
 
-  @HostListener('window:resize', ['$event'])
-  onResize(event: any): any {
-    if (event.target.innerWidth < 800) {
-      this.sidenav.close();
+  mouseenter() {
+    if (!this.isExpanded) {
+      this.isShowing = true;
     }
-    else {
-      this.sidenav.open();
+  }
+
+  mouseleave() {
+    if (!this.isExpanded) {
+      this.isShowing = false;
     }
   }
 }
